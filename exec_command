@@ -1,0 +1,1 @@
+nodemon --exec ts-node src/app.ts
