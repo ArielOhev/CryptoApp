@@ -9,13 +9,17 @@ const schema = new mongoose.Schema<DTO>({
 
 });
 
-const symbolValueModel= mongoose.model<DTO>('symbolValue',schema);
+const symbolValueModel= mongoose.model<DTO>('SymbolValue',schema);
 
 class Mongo implements Model{
     async add(symbolValue:DTO): Promise<DTO>{
         const newSymbolValue = new symbolValueModel(symbolValue);
         await newSymbolValue.save();
         return newSymbolValue;
+    }
+    async getLatest(symbol:String):Promise<DTO>{
+        const symbolsValues = await symbolValueModel.find({symbol}).sort({when:-1}).limit(1);
+        return symbolsValues[0];
     }
 }
 

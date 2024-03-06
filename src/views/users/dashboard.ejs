@@ -7,17 +7,25 @@
     <title>Crypto Dashboard</title>
 </head>
 <body>
-    <div style="display: flex; justify-content: center;flex-direction: column; align-items: center;">
+    <div style="display: flex;flex-direction: column; align-items: center; border: 2px solid black; height: 95vh;">
         <form style="display: flex; flex-direction: column; width: 400px;" method="POST" action="/users/symbol/add">
-            <input action="text" name="symbol" placeholder="crypto token">
+            <input action="text" name="symbol" placeholder="crypto token" style="height: 40px;">
             <button class ="btn" style="border-radius: 100px;">Add</button>
         </form>
         <br/>
         <h1 style="font-size: 24px; font-weight: 600;">Symbol Value</h1>
         <ul style="list-style: none;">
-            <% userSymbols.forEach(userSymbols=>{%>
+            <% symbolValues.forEach(symbolValue=>{%>
+                <li style="display: flex;">
+                    <div style="font-size: 18px; font-weight:600;"><%= symbolValue?.symbol %></div>
+                    <div style="display: flex; margin-left: 30px;">
+                        <span style=>Value:</span>
+                        <span><%= symbolValue?.value %></span>
+                        </div>
+                </li>
+
                 
-                <li><%= userSymbols.symbol %></li>
+                <!-- <li style="display: flex; font-weight: 600; font-size: 18px; margin-right: 20px;"><%= symbolValue?.symbol %> <span style='padding-left: 20px;'>Value: <%= symbolValue?.value %> </span></li> -->
                 <%}) %>
 
         </ul>
