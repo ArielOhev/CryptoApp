@@ -2,12 +2,16 @@ import express from 'express';
 import usersRouter from './routers/users';
 import path from 'path';
 import  config from 'config';
+import errorHandler from './error/error-handler';
 
 const server = express();
 server.set('views',path.resolve(__dirname,'views'));
 server.set('view engine','ejs');
 
+server.use(express.urlencoded())
 server.use('/users',usersRouter);
+
+server.use('/error',errorHandler);
 
 const port=config.get<number>('app.port');
 server.listen(port,()=>{

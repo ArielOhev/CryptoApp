@@ -22,6 +22,15 @@ class MySQL implements Model{
         return newUserSymbol;
 
     }
+    async getForUser(userId: number): Promise<DTO[]> {
+        const userSymbol:DTO[]  = await query(`
+        SELECT id, user_id, symbol
+        FROM    users_symbols
+        WHERE   user_id = ?
+        `,[userId])
+
+        return userSymbol;
+    }
 }
 
 const mysql  = new MySQL();
