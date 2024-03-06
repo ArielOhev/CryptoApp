@@ -3,6 +3,7 @@ import { get } from "http";
 import getModel from "../../models/user-symbol/factory";
 import { DTO } from "../../models/user-symbol/dto";
 import getSymbolValueModel from "../../models/Symbol-Value/factory";
+import config from 'config';
 
 // export function dashboard (req:Request,res:Response,next:NextFunction){
 //     res.render('users/dashboard');
@@ -15,7 +16,8 @@ export async function dashboard(req:Request,res:Response,next:NextFunction){
         console.log(symbolValues);
              
         res.render('users/dashboard',{
-            symbolValues
+            symbolValues,
+            io:config.get('app.io'),
         });
 
     }catch(err){next(err)}

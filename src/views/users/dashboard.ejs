@@ -3,11 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Crypto Dashboard</title>
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js" integrity="sha384-Gr6Lu2Ajx28mzwyVR8CFkULdCU7kMlZ9UthllibdOSo6qAiN+yXNHqtgdTvFXMT4" crossorigin="anonymous"></script>
+    <script>
+        const socket = io('ws://<%= io.host %>:<%= io.port %>');
+        socket.on('update your list', message => {
+           console.log(`received an update your list' message:`, message)  
+           const { symbol, value } = message;
+           document.getElementById(`${symbol}-value`).innerHTML = value;
+        })
+    </script>
 </head>
 <body>
-    <div style="display: flex;flex-direction: column; align-items: center; border: 2px solid black; height: 95vh;">
+    <div style="display: flex;flex-direction: column; align-items: center; border: 2px solid black; height: 95vh; width: 98vw;">
         <form style="display: flex; flex-direction: column; width: 400px;" method="POST" action="/users/symbol/add">
             <input action="text" name="symbol" placeholder="crypto token" style="height: 40px;">
             <button class ="btn" style="border-radius: 100px;">Add</button>
@@ -20,7 +28,7 @@
                     <div style="font-size: 18px; font-weight:600;"><%= symbolValue?.symbol %></div>
                     <div style="display: flex; margin-left: 30px;">
                         <span style=>Value:</span>
-                        <span><%= symbolValue?.value %></span>
+                        <span id="<%= symbolValue?.symbol %>-value"><%= symbolValue?.value %></span>
                         </div>
                 </li>
 

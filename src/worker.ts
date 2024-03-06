@@ -1,4 +1,4 @@
-
+import {io} from 'socket.io-client';
 import mysql from 'mysql2';
 import util from 'util';
 import config from 'config';
@@ -7,6 +7,15 @@ import getModel from './models/user-symbol/factory';
 import getSymbolValueModel from './models/Symbol-Value/factory';
 import axios from 'axios';
 import  cheerio  from 'cheerio';
+
+
+//socket io init
+const socket_host = config.get<String>('worker.io.host')
+const socket_port = config.get<Number>('worker.io.port');
+ 
+const socket = io(`ws://${socket_host}:${socket_port}`);
+
+
 
 //mysql init
 //connect to mysql
@@ -37,8 +46,10 @@ async function scrape(symbol:string){
         when:new Date()
     })
 
-    
-    
+    socket.emit('update from worker',{
+        symbol,
+        value
+    })
 
     return;
     
