@@ -25,7 +25,7 @@ export async function addSymbol(req:Request,res:Response,next:NextFunction) {
             userId:1
         }
         const newUserSymbol = await userSymbolModel.add(inputUserSymbol);
-        console.log(`new user symbol ${inputUserSymbol.userId}`);
+        // console.log(`new user symbol ${inputUserSymbol.userId}`);
         
         res.redirect('/users/dashboard')
     }catch(err){

@@ -11,7 +11,7 @@ server.set('view engine','ejs');
 server.use(express.urlencoded())
 server.use('/users',usersRouter);
 
-server.use('/error',errorHandler);
+// server.use('/symbol/add',errorHandler);
 
 const port=config.get<number>('app.port');
 server.listen(port,()=>{

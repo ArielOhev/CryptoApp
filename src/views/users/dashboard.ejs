@@ -7,29 +7,22 @@
     <title>Crypto Dashboard</title>
 </head>
 <body>
-    <div style="display: flex; justify-content: center;">
-        <form style="display: flex; flex-direction: column; height: 400px; width: 400px;" method="POST" action="/users/symbol/add">
+    <div style="display: flex; justify-content: center;flex-direction: column; align-items: center;">
+        <form style="display: flex; flex-direction: column; width: 400px;" method="POST" action="/users/symbol/add">
             <input action="text" name="symbol" placeholder="crypto token">
             <button class ="btn" style="border-radius: 100px;">Add</button>
         </form>
-    </div>
-    
-    <table>
-        <thead>
-            <tr>
-                <th>Symbol</th>
-                <th>Value</th>
-            </tr>
-        </thead>
-        <tbody>
+        <br/>
+        <h1 style="font-size: 24px; font-weight: 600;">Symbol Value</h1>
+        <ul style="list-style: none;">
             <% userSymbols.forEach(userSymbols=>{%>
-                <tr>
-                    <td><%= userSymbols.symbol %></td>
-                    <td></td>
-                </tr>
-            <%}) %>
-        </tbody>
-    </table>
+                
+                <li><%= userSymbols.symbol %></li>
+                <%}) %>
+
+        </ul>
+    </div>
+
     
 </body>
 </html>
