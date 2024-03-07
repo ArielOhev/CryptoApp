@@ -32,8 +32,15 @@ server.use('/github',githubRouter);
 
 
 
-// server.use('/symbol/add',errorHandler);
+server.use(errorHandler);
 
+declare global{
+    namespace express{
+        interface user{
+            id:number;
+        }
+    }
+}
 const port=config.get<number>('app.port');
 server.listen(port,()=>{
     console.log(`server listen on ${port}`);

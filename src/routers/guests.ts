@@ -1,8 +1,10 @@
 import { Router } from "express";
-import { welcome } from "../controllers/guests/controller";
+import { logout, welcome } from "../controllers/guests/controller";
+import enforceGuests from "../middlewares/error/enforce-guests";
 
 const router = Router()
 
-router.get('/',welcome);
+router.get('/',enforceGuests,welcome);
+router.get('/guests/logout',logout)
 
 export default router;
