@@ -28,5 +28,10 @@
         "port":"27017",
         "database":"mymongo",
         "interval":30
+    },
+    "github":{
+        "clientID":"24231ae36a5584e20c5b",
+        "clientSecret":"",
+        "callbackURL":"http://localhost:8082/github/callback"
     }
 }
